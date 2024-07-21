@@ -19,6 +19,7 @@ def get_mask_card_number(info_card: str) -> str:
 
     type_card_with_empty = re.sub(r"([A-Z])", r"\1", type_card).strip()
     number_mask = number_card[0:4] + " " + number_card[4:6] + "** ****" + number_card[-4:]
+
     return f"{type_card_with_empty} {number_mask}"
 
 
