@@ -11,13 +11,13 @@ data = [
 
 def filter_by_state(data: List[Dict[str, str]], state: str = "EXECUTED") -> List[Dict[str, str]]:
     """Function input list dict and key state."""
-    filtered_data = [{"id": i["id"], "state": i["state"], "date": i["date"]} for i in data if i["state"] == state]
+    filtered_data = [{"id": index["id"], "state": index["state"], "date": index["date"]} for index in data if index["state"] == state]
     return filtered_data
 
 
-def sort_by_date(data: List[Dict[str, Any]], reverse: bool = True) -> List[Dict[str, Any]]:
+def sort_by_date(data: List[Dict[str, Any]], is_reverse: bool = True) -> List[Dict[str, Any]]:
     """Function input list dict and output new list dict"""
-    return sorted(data, key=lambda x: datetime.strptime(x["date"], "%Y-%m-%dT%H:%M:%S.%f"), reverse=reverse)
+    return sorted(data, key=lambda x: datetime.strptime(x["date"], "%Y-%m-%dT%H:%M:%S.%f"), reverse=is_reverse)
 
 
 # print(filter_by_state((data)))
