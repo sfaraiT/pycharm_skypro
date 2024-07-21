@@ -18,7 +18,7 @@ def get_data(input_string: str) -> str | None:
 
 
 # Test our def and code ->
-print(get_mask_card_number("Visa Platinum 8990922113665229"))
+print(get_mask_account("Visa Platinum 8990922113665229"))
 print(mask_account_card("Maestro 1596837868705199"))
 print(mask_account_card("Счет 64686473678894779589"))
 print(mask_account_card("Visa Gold 5999414228426353"))
