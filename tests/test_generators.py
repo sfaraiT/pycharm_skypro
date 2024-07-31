@@ -30,7 +30,7 @@ def transactions() -> List[Dict[str, Any]]:
     ],
 )
 def test_filter_by_currency(transactions: List[Dict[str, Any]], currency: str, expected: List[Dict[str, Any]]) -> None:
-    """Тест filter_by_currency"""
+    """Testing filter_by_currency"""
     filtered_transactions = list(filter_by_currency(transactions, currency))
     assert filtered_transactions == expected
 
