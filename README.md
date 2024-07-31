@@ -15,15 +15,16 @@ poetry install --no-dev
 ```
 
 ## Документация
-**.\src\masks.py && .\src\widget.py && .\src\processing.py**
+**.\src\masks.py && .\src\widget.py && .\src\processing.py && .\src\generators.py**
 - Функция get_mask_account - маскировка видны последние 4 цифры карты
 - Функция mask_account_card - обработка названия карт клиента / счета с вовзратом сокрытия информации
 - Функция get_date - обработка даты в удобочитаемый формат клиенту
 - Функция filter_by_state - обработка списка словарей по заданному значению state
 - Функция sort_by_date - обработка списка словарей с необязательным парамерт, задающий порядок сортировки ( по умолчанию - убывание )
-
+- Функция filter_by_currency - обработка списка словарей представляющих транзакции, возвращающая транзакции, где операция соотвествует заданной валюте.
+- 
 ### Тестирование
-- .\tests\test_masks.py && \tests\test_processing.py && \tests\test_widget.py
+- .\tests\test_masks.py && \tests\test_processing.py && \tests\test_widget.py && \tests\test_generators.py
 - Выбрать файл для тестирования и запустить через окно консоли выполнения команды pytest "имя файла"
 
 
