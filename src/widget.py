@@ -1,4 +1,4 @@
-from masks import get_mask_account, get_mask_card_number
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(input_string: str) -> str | None:
@@ -22,11 +22,12 @@ def mask_account_card(input_string: str) -> str | None:
     return "\n".join(" ".join(values_cart) for values_cart in card_list)
 
 
-def get_data(input_string: str) -> str | None:
+def get_date(date: str) -> str:
     """Function convert date"""
-    date = input_string.split("T")[0]
-    formatted_date = f"{date[-2:]}.{date[5:7]}.{date[:4]}"
-    return formatted_date
+    if date == "":
+        return ""
+    else:
+        return f"{date[8:10]}.{date[5:7]}.{date[0:4]}"
 
 
 # Test our def and code ->
@@ -37,4 +38,4 @@ print(mask_account_card("Visa Platinum 5999414228426353"))
 print(mask_account_card("Мир 5999414228426353"))
 print(mask_account_card("Счет 35383033474447895560"))
 print(get_mask_card_number("7000792289606361"))
-print(get_data("2024-03-11T02:26:18.671407"))
+print(get_date("2024-03-11T02:26:18.671407"))
