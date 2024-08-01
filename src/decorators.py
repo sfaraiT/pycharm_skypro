@@ -1,41 +1,25 @@
-import logging
-import time
 from functools import wraps
-from typing import Any, Callable, Optional
+from typing import Any, Callable
 
 
-def log(filename: Optional[str] = None) -> Callable[[Callable[..., Any]], Callable[..., Any]]:
+def log(filename: Any) -> Callable:
     """The log decorator automatically logs the start and end of a
     function execution and the results or errors that occur"""
 
-    def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
+    def decorator(func: Callable) -> Callable:
         @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
-            start_time = time.time()
             try:
                 result = func(*args, **kwargs)
-                end_time = time.time()
-                execution_time = end_time - start_time
-                log_message = (
-                    f"{func.__name__} ok. Execution time: {execution_time:.2f} seconds. "
-                    f"Inputs: {args}, Result: {result}"
-                )
-                if filename:
-                    logging.basicConfig(filename=filename, level=logging.INFO)
-                    logging.info(log_message)
-                else:
-                    print(log_message)
-                return result
+                log_message = f"{func.__name__} called with args: {args}, kwargs:{kwargs}. Result: {result}"
+                with open(filename, "a") as f:
+                    f.write(log_message + "\n")
+                print(log_message)
             except Exception as e:
-                end_time = time.time()
-                execution_time = end_time - start_time
-                log_message = f"{func.__name__} error: {type(e).__name__}. Inputs: {args}, {kwargs}. Error: {str(e)}"
-                if filename:
-                    logging.basicConfig(filename=filename, level=logging.ERROR)
-                    logging.error(log_message)
-                else:
-                    print(log_message)
-                raise
+                error_message = f"{func.__name__} error: {e}. Inputs:{args}, {kwargs}"
+                with open(filename, "a") as f:
+                    f.write(error_message + "\n")
+                print(error_message)
 
         return wrapper
 

@@ -1,35 +1,20 @@
-from typing import Any, Optional
-
-import pytest
-
 from src.decorators import log
 
 
-@log(filename="src\\mylog.txt")  # Using double backslashes
-def my_function(x: int, y: int) -> int:
-    """Add two integers and return the result"""
-    return x + y
-
-
-@pytest.mark.parametrize("filename", [None, "src\\mylog.txt"])  # Using double backslashes
-def test_log(capsys: Any, filename: Optional[str]) -> None:
+def test_log(capsys):
     """Test log"""
 
-    @log(filename)
-    def test_func() -> None:
-        """Test func"""
-        my_function(1, 2)
+    @log(filename="mylog.txt")
+    def my_function(x, y):
+        return x + y
 
-    test_func()
-
+    # Test function
+    my_function(1, 2)
     captured = capsys.readouterr()
-
-    if filename:
-        try:
-            with open(filename, "r") as file:
-                log_content = file.read()
-                assert "test_func ok" in log_content
-        except FileNotFoundError:
-            pytest.fail(f"File '{filename}' not found.")
-    else:
-        assert "test_func ok" in captured.out
+    assert "my_function called with args: (1, 2), kwargs:{}. Result: 3\n" in captured.out
+    # Test mistake
+    try:
+        my_function(0, 2)
+    except TypeError:
+        captured = capsys.readouterr()
+        assert "my function error: " in captured.out

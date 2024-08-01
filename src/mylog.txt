@@ -10,3 +10,9 @@ ERROR:root:my_function error: TypeError. Inputs: (), {}. Error: my_function() mi
 INFO:root:my_function ok. Execution time: 0.00 seconds. Inputs: (0, 0), Result: 0
 INFO:root:my_function ok. Execution time: 0.00 seconds. Inputs: (1, 2), Result: 3
 INFO:root:my_function ok. Execution time: 0.00 seconds. Inputs: (1, 2), Result: 3
+INFO:root:my_function ok. Execution time: 0.00 seconds. Inputs: (1, 2), Result: 3
+INFO:root:my_function ok. Execution time: 0.00 seconds. Inputs: (1, 2), Result: 3
+my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs:(1, 't'), {}
+my_function called with args: (1, 2), kwargs:{}. Result: 3
+my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs:(1, 'T'), {}
+my_function called with args: (1, 2), kwargs:{}. Result: 3
